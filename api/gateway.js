@@ -1,6 +1,17 @@
 const path = require("path");
 const { pathToFileURL } = require("url");
 
+// Keep these explicit requires in gateway so Vercel traces
+// and bundles dependencies used by included service files.
+const __traceDeps = {
+  stremioAddonSdk: require("stremio-addon-sdk"),
+  proxyAddr: require("proxy-addr"),
+  supabase: require("@supabase/supabase-js"),
+  libsql: require("@libsql/client"),
+  pino: require("pino"),
+};
+void __traceDeps;
+
 let gateHandlersPromise = null;
 const cjsModuleCache = new Map();
 
