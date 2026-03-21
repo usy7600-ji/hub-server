@@ -1,27 +1,27 @@
 # Hub Server
 
-Unified server name: `hub-server`
+Production-ready unified Stremio addon server.
 
-This runs all 4 codebases behind one server entrypoint:
+## Endpoints
 
-- `stream-addon` at `/`
-- `link-broker` at `/broker/*`
-- `link-gate` at `/gate/*`
-- `link-worker` at `/worker/*`
+- `GET /` addon landing page
+- `GET /manifest.json` Stremio manifest
+- `GET /catalog/:type/:id.json` Stremio catalog
+- `GET /stream/:type/:id.json` Stremio stream resolution
+- `GET /api/resolve?episodeId=tt0388629:1:1` direct resolve API
+- `GET /health` health status
 
-Run:
+## Local run
 
 ```bash
 npm start
 ```
 
-Vercel is configured with `vercel.json` to route every request through `api/gateway.js`.
+## Runtime assets
 
-Bundled runtime files are included in this repo under `services/` and `bin/` so Vercel can run everything from one deployment.
+- `data/episodes/*.json` episode source catalog
+- `bin/dlp-jipi` and `bin/yt-dlp` media URL resolver binaries
 
-Quick health checks:
+## Vercel
 
-- `/combined/health`
-- `/broker/api/health`
-- `/gate/api/health`
-- `/worker/health`
+All routes are rewritten to `api/gateway.js`, which serves the unified handler.
