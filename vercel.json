@@ -1,0 +1,18 @@
+{
+  "version": 2,
+  "functions": {
+    "api/gateway.js": {
+      "runtime": "nodejs22.x"
+    }
+  },
+  "rewrites": [
+    {
+      "source": "/",
+      "destination": "/api/gateway"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/api/gateway?route=$1"
+    }
+  ]
+}
