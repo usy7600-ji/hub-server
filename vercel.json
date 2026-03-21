@@ -1,5 +1,13 @@
 {
   "version": 2,
+  "functions": {
+    "api/gateway.js": {
+      "includeFiles": [
+        "services/**",
+        "bin/**"
+      ]
+    }
+  },
   "rewrites": [
     {
       "source": "/",
