@@ -136,9 +136,9 @@ async function enhanceReq(req, fullPathname, searchParams, prefix) {
 async function loadGateHandlers() {
   if (!gateHandlersPromise) {
     gateHandlersPromise = (async () => {
-      const resolveUrl = pathToFileURL(path.join(__dirname, "..", "..", "link-gate", "api", "resolve.js")).href;
-      const indexUrl = pathToFileURL(path.join(__dirname, "..", "..", "link-gate", "api", "index.js")).href;
-      const healthUrl = pathToFileURL(path.join(__dirname, "..", "..", "link-gate", "api", "health.js")).href;
+      const resolveUrl = pathToFileURL(path.join(__dirname, "..", "services", "link-gate", "api", "resolve.js")).href;
+      const indexUrl = pathToFileURL(path.join(__dirname, "..", "services", "link-gate", "api", "index.js")).href;
+      const healthUrl = pathToFileURL(path.join(__dirname, "..", "services", "link-gate", "api", "health.js")).href;
 
       const [resolveModule, indexModule, healthModule] = await Promise.all([
         import(resolveUrl),
@@ -158,9 +158,9 @@ async function loadGateHandlers() {
 }
 
 async function routeBroker(req, res, pathname, searchParams) {
-  const brokerIndexHandler = loadCjsModule("../../link-broker/api/index");
-  const brokerResolveHandler = loadCjsModule("../../link-broker/api/resolve");
-  const brokerHealthHandler = loadCjsModule("../../link-broker/api/health");
+  const brokerIndexHandler = loadCjsModule("../services/link-broker/api/index");
+  const brokerResolveHandler = loadCjsModule("../services/link-broker/api/resolve");
+  const brokerHealthHandler = loadCjsModule("../services/link-broker/api/health");
   const brokerLoadError =
     brokerIndexHandler.__loadError ||
     brokerResolveHandler.__loadError ||
@@ -213,7 +213,7 @@ async function routeGate(req, res, pathname, searchParams) {
 }
 
 async function routeWorker(req, res, pathname, searchParams) {
-  const workerHandler = loadCjsModule("../../link-worker/api/resolve");
+  const workerHandler = loadCjsModule("../services/link-worker/api/resolve");
   if (workerHandler.__loadError) {
     sendDependencyError(res, "link-worker", workerHandler.__loadError);
     return;
@@ -224,7 +224,7 @@ async function routeWorker(req, res, pathname, searchParams) {
 }
 
 async function routeStreamAddon(req, res, pathname, searchParams) {
-  const streamAddonHandler = loadCjsModule("../../stream-addon/serverless");
+  const streamAddonHandler = loadCjsModule("../services/stream-addon/serverless");
   if (streamAddonHandler.__loadError) {
     sendDependencyError(res, "stream-addon", streamAddonHandler.__loadError);
     return;

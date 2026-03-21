@@ -1,6 +1,6 @@
-# Nakama Hub Server
+# Hub Server
 
-Unified server name: `nakama-hub-server`
+Unified server name: `hub-server`
 
 This runs all 4 codebases behind one server entrypoint:
 
@@ -16,6 +16,8 @@ npm start
 ```
 
 Vercel is configured with `vercel.json` to route every request through `api/gateway.js`.
+
+Bundled runtime files are included in this repo under `services/` and `bin/` so Vercel can run everything from one deployment.
 
 Quick health checks:
 
