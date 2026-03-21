@@ -6,7 +6,7 @@ function renderLandingPage(options = {}) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>One Piece (Jipi) - Stremio Addon</title>
+    <title>Nakama Stream Hub - Stremio Addon</title>
     <style>
         * { box-sizing: border-box; }
         body {
@@ -75,8 +75,8 @@ function renderLandingPage(options = {}) {
 <body>
     <main class="shell">
       <div class="container">
-          <h1>One Piece Jipi</h1>
-          <p>thanks to: Animeisreal and Nakama</p>
+          <h1>Nakama Stream Hub</h1>
+          <p>community addon gateway</p>
           <a href="${installUrl}" class="install-btn">INSTALL ADDON</a>
       </div>
     </main>

@@ -4,15 +4,15 @@ const { createDClient } = require("./modules/integrations/d-client");
 const IMDB_ID = "tt0388629";
 
 const manifest = {
-  id: "org.jipi.onepiece",
+  id: "org.nakama.streamhub",
   version: "1.0.0",
-  name: "One Piece (Jipi)",
-  description: "JIPI NAKAMA ANIMEISREAL ",
-  logo: "https://www.stickitup.xyz/cdn/shop/products/one-piece-logo-sticker-4857715.jpg?v=1771245370",
-  background: "https://www.stickitup.xyz/cdn/shop/products/one-piece-logo-sticker-4857715.jpg?v=1771245370",
+  name: "Nakama Stream Hub",
+  description: "Community stream addon",
+  logo: "https://images.metahub.space/logo/medium/tt0388629/img",
+  background: "https://images.metahub.space/background/medium/tt0388629/img",
   resources: ["catalog", "stream"],
   types: ["series"],
-  catalogs: [{ type: "series", id: "onepiece_catalog", name: "One Piece" }],
+  catalogs: [{ type: "series", id: "anime_hub_catalog", name: "Nakama Catalog" }],
   idPrefixes: [IMDB_ID]
 };
 
@@ -20,7 +20,7 @@ const builder = new addonBuilder(manifest);
 const dClient = createDClient();
 
 builder.defineCatalogHandler(async (args) => {
-  if (args.type !== "series" || args.id !== "onepiece_catalog") {
+  if (args.type !== "series" || args.id !== "anime_hub_catalog") {
     return { metas: [] };
   }
 
@@ -29,7 +29,7 @@ builder.defineCatalogHandler(async (args) => {
       {
         id: "tt0388629",
         type: "series",
-        name: "One Piece",
+        name: "Nakama Series",
         poster: "https://images.metahub.space/poster/medium/tt0388629/img"
       }
     ]
@@ -56,7 +56,7 @@ builder.defineStreamHandler(async (args) => {
     return {
       streams: [
         {
-          name: "Jipi",
+          name: "Nakama Hub",
           title: resolved.title,
           url: resolved.url,
           behaviorHints: { notWebReady: false }
