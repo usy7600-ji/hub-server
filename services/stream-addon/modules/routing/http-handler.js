@@ -202,10 +202,17 @@ function sendPublicError(req, res, statusCode = 503) {
 
 function handlePublicRoute(req, res, pathname) {
   if (pathname === "/") {
+    const host = String(req.headers["x-forwarded-host"] || req.headers.host || "")
+      .trim()
+      .replace(/[^a-zA-Z0-9.:-]/g, "");
+    const installUrl = host
+      ? `stremio://${host}/manifest.json`
+      : "stremio:///manifest.json";
+
     res.statusCode = 200;
     res.setHeader("Content-Type", "text/html");
     applyCors(req, res);
-    res.end(renderLandingPage());
+    res.end(renderLandingPage({ installUrl }));
     return { handled: true, outcome: { source: "policy", cause: "success", result: "success" } };
   }
 

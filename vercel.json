@@ -2,10 +2,7 @@
   "version": 2,
   "functions": {
     "api/gateway.js": {
-      "includeFiles": [
-        "services/**",
-        "bin/**"
-      ]
+      "includeFiles": "{services/**,bin/**}"
     }
   },
   "rewrites": [

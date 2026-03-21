@@ -1,4 +1,5 @@
-function renderLandingPage() {
+function renderLandingPage(options = {}) {
+  const installUrl = String(options.installUrl || "stremio:///manifest.json");
   return `
 <!DOCTYPE html>
 <html lang="en">
@@ -76,7 +77,7 @@ function renderLandingPage() {
       <div class="container">
           <h1>One Piece Jipi</h1>
           <p>thanks to: Animeisreal and Nakama</p>
-          <a href="stremio://add-jipi.vercel.app/manifest.json" class="install-btn">INSTALL ADDON</a>
+          <a href="${installUrl}" class="install-btn">INSTALL ADDON</a>
       </div>
     </main>
   </body>
